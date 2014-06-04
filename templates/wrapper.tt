@@ -8,17 +8,17 @@
 
 <link rel="stylesheet" href="/css/font-awesome.min.css" />
 <link rel="stylesheet" href="/css/bootstrap.min.css" />
-<script type="stylesheet">
-body { padding-top: 70px; }
-</script>
+<link rel="stylesheet" href="/css/OneTool.css" />
 
 <script type="text/javascript" src="[% request.uri_base %]/js/jquery.js"></script>
+
 </head>
 <body>
 [% INCLUDE 'menu_top.tt' %]
 <div class="container">
 [% content %]
 </div>
+<hr>
 <div id="footer" align="center">
 Powered by <a href="http://mojolicio.us/">Mojolicious</a> - Designed with <a href="http://getbootstrap.com/">Bootstrap</a> & <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>.
 </div>

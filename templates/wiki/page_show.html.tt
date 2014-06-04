@@ -1,0 +1,7 @@
+[% INCLUDE 'wiki/page_show_buttons.tt' %]
+<hr>
+<div>[% INCLUDE 'wiki/breadcrumb.tt' %]</div>
+[% html %]
+<div>[% INCLUDE 'wiki/breadcrumb.tt' %]</div>
+<hr>
+[% INCLUDE 'wiki/page_show_buttons.tt' %]

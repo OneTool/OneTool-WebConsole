@@ -55,6 +55,7 @@ sub startup
 	$r->get('/logmanagement/device/:device_name/services')->to('LogManagement::Device#services');
 
     # Routes /wiki
+    $r->get('/wiki/page/:page_name')->to('Wiki::Page#show');
 }
 
 1;

@@ -1,0 +1,5 @@
+<div align="center">
+<button type="button" class="btn btn-default active" href="/wiki/page/revisions/[% page_name %]"><i class="fa fa-eye"></i> Show revisions</button>
+<button type="button" class="btn btn-default active" href="/wiki/page/remove/[% page_name %]"><i class="fa fa-trash-o"></i> Remove this page</button>
+<button type="button" class="btn btn-default active" href="/wiki/page/edit/[% page_name %]"><i class="fa fa-edit"></i> Edit this page</button>
+</div>
