@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+       $('.btn').tooltip({ delay: { show: 1000, hide: 100 } });
+    });
+</script>
+
+[% flash_messages = c.flash('messages') %]
+[% FOREACH m IN flash_messages %]
+<div class="alert [% m.type == 'ERROR' ? 'alert-danger' : 'alert-warning' %] alert-dismissable" align="center">
+<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    [% m.msg %]
+</div>
+[% END %]
+
+[% USE LogManagement.Device(config) %]
+
+[% INCLUDE 'logmanagement/device/dialog_new.tt' %]
+
+<div align="center">
+<a class="open-dialog" data-toggle="modal" data-id="device_new" data-header="" data-body="" data-link="/device/new">
+<button type="submit" class="btn btn-primary">
+<i class="fa fa-plus-circle"></i> <i class="fa fa-desktop"></i> [% c.l("_NEW_DEVICE") %]</button>
+</a>
+</div>
+<br>
+
+<div align="center">
+<form class="form-inline" role="form">
+	[% INCLUDE 'logmanagement/device/select_logtype.tt' %]
+	[% INCLUDE 'logmanagement/device/select_device_type.tt' %]
+	[% INCLUDE 'logmanagement/device/select_device_model.tt' %]
+	<button type="submit" class="btn btn-primary">
+	<i class="fa fa-filter"></i> [% c.l("_FILTER") %]</button>
+</form>
+</div>
+
+<table class="table table-bordered table-condensed table-hover table-striped">
+<thead>
+<tr>
+	<th>[% c.l("_NAME") %]</th>
+	<th>[% c.l("_IP_ADDRESS") %]</th>
+	<th>[% c.l("_LOG_TYPE") %]</th>
+	<th>[% c.l("_DEVICE_TYPE") %] / [% c.l("_DEVICE_MODEL") %]</th>
+	<th>[% c.l("_DESCRIPTION") %]</th>
+	<th>[% c.l("_STATUS") %]</th>
+	<th>[% c.l("_ACTION") %]</th>
+</tr>
+</thead>
+<tbody>
+[% FOREACH device IN LogManagement.Device.configurations %]
+<tr>
+	<td>[% device.name %]</td>
+	<td>[% device.address %]</td>
+	<td>[% device.logtype %]</td>
+	<td>[% device.type %] / [% device.model %]</td>
+	<td>[% device.description %]</td>
+	<td>[% LogManagement.Device.parser_status(device.status) %]</td>
+	<td>
+	<a href="device/[% device.name %]/services"
+	type="button" class="btn btn-default btn-sm active" 
+	data-toggle="tooltip" data-placement="top" 
+	title="[% c.l("_SERVICES") %]"><i class="fa fa-cog"></i> </a>
+	<button type="button" class="btn btn-default btn-sm active" data-toggle="tooltip" data-placement="top" title="[% c.l("_STORAGES") %]"
+		href="/device/storages/[% device.name %]"><i class="fa fa-hdd-o"></i> </button>
+	<button type="button" class="btn btn-default btn-sm active" data-toggle="tooltip" data-placement="top" title="[% c.l("_DASHBOARD") %]"
+		href="/device/dashboard/[% device.name %]"><i class="fa fa-dashboard"></i> </button>
+	<button type="button" class="btn btn-default btn-sm active" data-toggle="tooltip" data-placement="top" title="[% c.l("_EDIT") %]"
+		href="/device/edit/[% device.name %]"><i class="fa fa-edit"></i> </button>
+	<button type="button" class="btn btn-default btn-sm active" data-toggle="tooltip" data-placement="top" title="[% c.l("_REMOVE") %]"
+		href="/device/remove/[% device.name %]"><i class="fa fa-trash-o"></i> </button>
+	</td>
+</tr>
+[% END %]
+</tbody>
+</table>

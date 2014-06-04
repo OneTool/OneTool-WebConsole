@@ -1,0 +1,7 @@
+[% USE LogManagement.Service %]
+<select name="select_service" id="select_service">
+<option value="" selected>-- [% c.l("_SERVICE") %] --</option>
+[% FOREACH service IN LogManagement.Service.configurations %]
+	<option value="[% service.name %]">[% service.name %]</option>
+[% END %]
+</select>

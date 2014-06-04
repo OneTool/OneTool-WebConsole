@@ -1,0 +1,69 @@
+% USE LogManagement %]
+[% USE LogManagement.Device %]
+
+% 
+	INCLUDE 'octopussy/dialog.tt', 
+	id => 'device_service_delete', 
+	header => 'Header',
+	body => 'Body' 
+%]
+
+<h2>[% c.l("_MSG_SERVICES_FOR_DEVICE", device) %]</h2>
+<h3></h3>
+<table class="table table-bordered table-condensed table-hover table-stripped">
+<thead>
+<tr>
+	<th>[% c.l("_RANK") %]</th>
+	<th>[% c.l("_SERVICE") %]</th>
+	<th>[% c.l("_STATISTICS") %]</th>
+	<th>[% c.l("_LOGS_COMPRESSION") %]</th>
+	<th>[% c.l("_ACTION") %]
+	<div class="btn-group">
+	<a class="btn dropdown-toggle" data-toggle="dropdown">
+	<i class="fa fa-sort-alpha-asc"></i>
+	</a>
+	<ul class="dropdown-menu">
+	<li><a href="/device/services/[% device %]?sort=rank">Sort by Rank</a></li>
+	<li><a href="/device/services/[% device %]?sort=sid">Sort by Service</a></li>
+	<li><a href="/device/services/[% device %]?sort=statistics">Sort by Statistics Status</a></li>
+	<li><a href="/device/services/[% device %]?sort=compression">Sort by Logs Compression Status</a></li>
+	</ul>
+	</div>
+	</th>
+</tr>
+</thead>
+<tbody>
+[% FOREACH service IN LogManagement.Device.Services(device, (sort || 'rank')) %]
+	[% statistics_status = (service.statistics ? 'Enabled' : 'Disabled') %]
+	[% compression_status = (service.compression ? 'Enabled' : 'Disabled') %]
+	<tr>
+	<td><div class="text-center">[% service.rank %]</div></td>
+	<td>[% service.sid %]</td>
+	<td>[% LogManagement.Status(statistics_status) %]</td>
+	<td>[% service.compression %] [% LogManagement.Status(compression_status) %]</td>
+	<td>
+	<div class="text-center">
+	% 
+		INCLUDE 'octopussy/device/move_service_buttons.tt', 
+		device => device, service => service.sid
+	%]
+	<a class="open-dialog" data-toggle="modal" data-id="device_service_delete" data-header="Remove Service From Device" data-body="[% c.l("_DLG_DELETE_DEVICE_SERVICE", service.sid, device) %]" data-link="/device/remove_service/[% device %]/[% service.sid %]"><i class="fa fa-trash-o"></i> </a>
+	</div>
+	</td>
+	</tr>
+[% END %]
+<form method="post" action="/device/add_service">
+<input type="hidden" name="device" value="[% device %]"> 
+<tr>
+<td></td>
+<td>[% INCLUDE 'logmanagement/service/select_service.tt' %]</td>
+<td>[% INCLUDE 'select_status.tt', id => 'statistics', name => 'statistics' %]</td>
+<td>[% INCLUDE 'select_status.tt', id => 'compression', name => 'compression' %]</td>
+<td>
+<div class="text-center">
+<button type="submit" class="btn btn-primary">[% c.l("_ADD_SERVICE_TO_DEVICE") %]</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>

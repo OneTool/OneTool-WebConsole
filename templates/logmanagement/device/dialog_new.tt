@@ -1,0 +1,71 @@
+<!-- Dialog BEGIN -->
+<div id="dialog_device_new" class="modal fade" tabindex="-1" role="dialog"
+ aria-labelledby="dialog_header_device_new" aria-hidden="true">
+	<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-body">
+<form class="form-horizontal" role="form">
+<legend><i class="fa fa-plus-circle"></i> <i class="fa fa-desktop"></i> [% c.l("_NEW_DEVICE") %]</legend>
+	<div class="form-group">
+		<label class="control-label col-sm-3" for="name">[% c.l("_NAME") %]</label>
+		<div class="col-sm-9">
+      	<input type="text" id="name" placeholder="[% c.l("_NAME") %]">
+    	</div>
+	</div>
+	<div class="form-group">
+        <label class="control-label col-sm-3" for="address">[% c.l("_IP_ADDRESS") %]</label>
+        <div class="col-sm-9">
+        <input type="text" id="address" placeholder="[% c.l("_IP_ADDRESS") %]">
+        </div>
+    </div>
+	<div class="form-group">
+        <label class="control-label col-sm-3" for="logtype">[% c.l("_LOG_TYPE") %]</label>
+        <div class="col-sm-9">
+		[% INCLUDE 'logmanagement/device/select_logtype.tt' %]
+        </div>
+    </div>
+	<div class="form-group">
+        <label class="control-label col-sm-3" for="devicetype">
+		[% c.l("_DEVICE_TYPE") %]
+		</label>
+        <div class="col-sm-9">
+		[% INCLUDE 'logmanagement/device/select_device_type.tt', id_type => 'dialog' %]
+        </div>
+    </div>
+	<div class="form-group">
+		<label class="control-label col-sm-3" for="devicemodel">
+        [% c.l("_DEVICE_MODEL") %]
+        </label>
+        <div class="col-sm-9">
+		[% INCLUDE 'logmanagement/device/select_device_model.tt', id_type => 'dialog', id_model => 'dialog' %]
+        </div>
+    </div>
+	<div class="form-group">
+        <label class="control-label col-sm-3" for="description">[% c.l("_DESCRIPTION") %]</label>
+        <div class="col-sm-9">
+        <input type="text" id="description" placeholder="[% c.l("_DESCRIPTION") %]">
+        </div>
+    </div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> [% c.l("_CANCEL") %]</button>
+        <a id="dialog_link_device_new" class="btn btn-primary"><i class="fa fa-save"></i> [% c.l("_SAVE") %]</a>
+    </div>
+</form>
+	</div>
+	</div>
+	</div>
+
+<script type="text/javascript" charset="utf-8">
+$(document).on("click", ".open-dialog", function () {
+    var id = $(this).data('id');
+    var header = $(this).data('header');
+    var body = $(this).data('body');
+    var link = $(this).data('link');
+    $("#dialog_header_" + id).text(header);
+    $("#dialog_body_" + id).text(body);
+    $("#dialog_link_" + id).attr("href", link); 
+    $('#dialog_' + id).modal('show');
+});
+</script>
+<!-- Dialog END -->

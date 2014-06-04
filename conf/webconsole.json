@@ -1,0 +1,21 @@
+{
+	"name":"OneTool::WebConsole",
+	"modules": {
+        "Configuration":{
+            "icon":"fa-wrench"
+            },
+		"LogManagement":{
+			"icon":"fa-list",
+			"servers":["127.0.0.1:2000", "127.0.0.1:2001"]
+			},
+		"SystemMonitoring":{
+			"icon":"fa-sitemap"
+			},
+		"WebMonitoring":{
+            "icon":"fa-globe"
+            },
+		"Wiki":{
+			"icon":"fa-edit"
+			}
+		}
+}

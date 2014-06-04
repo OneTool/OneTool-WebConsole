@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-type" content="text/html; charset=[% settings.charset %]" />
+<title>OneTool::Web</title>
+
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<script type="stylesheet">
+body { padding-top: 70px; }
+</script>
+
+<script type="text/javascript" src="[% request.uri_base %]/js/jquery.js"></script>
+</head>
+<body>
+[% INCLUDE 'menu_top.tt' %]
+<div class="container">
+[% content %]
+</div>
+<div id="footer" align="center">
+Powered by <a href="http://mojolicio.us/">Mojolicious</a> - Designed with <a href="http://getbootstrap.com/">Bootstrap</a> & <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>.
+</div>
+<script src="[% request.uri_base %]/js/bootstrap.min.js"></script>
+</body>
+</html>
