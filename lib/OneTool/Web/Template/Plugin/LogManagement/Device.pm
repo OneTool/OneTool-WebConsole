@@ -13,7 +13,7 @@ use base 'Template::Plugin';
 use Mojo::UserAgent;
 
 #use Octopussy::Device;
-use OneTool::LogManagement::Device;
+#use OneTool::LogManagement::Device;
 
 =head1 SUBROUTINES/METHODS
 
@@ -39,7 +39,7 @@ sub configuration
 {
     my ($self, $device_name) = @_;
 
-    my $conf = OneTool::LogManagement::Device::configuration($device_name);
+    my $conf = undef; #OneTool::LogManagement::Device::configuration($device_name);
 
     return ($conf);
 }
@@ -118,6 +118,13 @@ sub types
     my @device_types = (); #Octopussy::Device::Types();
 
     return (\@device_types);
+}
+
+sub load
+{
+    my ($self, $page_name) = @_;
+    
+    return ('<h1>header one </h1>');
 }
 
 1;

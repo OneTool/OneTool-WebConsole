@@ -12,6 +12,8 @@ use warnings;
 use FindBin;
 use Mojo::Base 'Mojolicious';
 
+use OneTool::Web::Wiki::Page;
+
 =head1 SUBROUTINES/METHODS
 
 =head2 startup
@@ -47,15 +49,17 @@ sub startup
 	
 	#$r->get('/')->
 	
+	$r->get('/wiki/page/:page_name')->to('Wiki::Page#show');
+	
 	# Routes /configuration
 	
 	# Routes /logmanagement/device(s)
-	$r->get('/logmanagement/devices')->to('LogManagement::Device#list');
-	$r->get('/logmanagement/device_models/:device_type')->to('LogManagement::Device#models');
-	$r->get('/logmanagement/device/:device_name/services')->to('LogManagement::Device#services');
+	#$r->get('/logmanagement/devices')->to('LogManagement::Device#list');
+	#$r->get('/logmanagement/device_models/:device_type')->to('LogManagement::Device#models');
+	#$r->get('/logmanagement/device/:device_name/services')->to('LogManagement::Device#services');
 
     # Routes /wiki
-    $r->get('/wiki/page/:page_name')->to('Wiki::Page#show');
+    #$r->get('/wiki/page/:page_name')->to('Wiki::Page#show');
 }
 
 1;

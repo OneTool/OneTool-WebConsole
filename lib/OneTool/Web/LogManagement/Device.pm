@@ -83,6 +83,13 @@ sub services
 	$self->render(template => 'logmanagement/device/services');
 }
 
+sub load
+{
+    my ($self, $page_name) = @_;
+    
+    return ('<h1>header one </h1>');
+}
+
 1;
 
 =head1 AUTHOR

@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/css/OneTool.css" />
 
-<script type="text/javascript" src="[% request.uri_base %]/js/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
 
 </head>
 <body>
