@@ -2,7 +2,7 @@ USE LogManagement.Device %]
 [% INCLUDE 'wiki/page_show_buttons.tt' %]
 <hr>
 <div>[% INCLUDE 'wiki/breadcrumb.tt' %]</div>
-[% INCLUDE 'flot/timeline.tt' %]
+[% html %]
 <div>[% INCLUDE 'wiki/breadcrumb.tt' %]</div>
 <hr>
 [% INCLUDE 'wiki/page_show_buttons.tt' %]

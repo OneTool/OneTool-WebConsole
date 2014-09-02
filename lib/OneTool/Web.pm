@@ -46,20 +46,19 @@ sub startup
 
     # sets routes
 	my $r = $self->routes;
-	
-	#$r->get('/')->
-	
-	$r->get('/wiki/page/:page_name')->to('Wiki::Page#show');
-	
+		
 	# Routes /configuration
 	
 	# Routes /logmanagement/device(s)
-	#$r->get('/logmanagement/devices')->to('LogManagement::Device#list');
-	#$r->get('/logmanagement/device_models/:device_type')->to('LogManagement::Device#models');
-	#$r->get('/logmanagement/device/:device_name/services')->to('LogManagement::Device#services');
+	$r->get('/logmanagement/devices')->to('LogManagement::Device#list');
+	$r->get('/logmanagement/device_models/:device_type')->to('LogManagement::Device#models');
+	$r->get('/logmanagement/device/:device_name/services')->to('LogManagement::Device#services');
 
+    # Routes /monitoring
+    $r->get('/monitoring/timeline/*device/*check/*key')->to('Monitoring::Graph#timeline');
+    
     # Routes /wiki
-    #$r->get('/wiki/page/:page_name')->to('Wiki::Page#show');
+    $r->get('/wiki/page/:page_name')->to('Wiki::Page#show');
 }
 
 1;

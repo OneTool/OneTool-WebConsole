@@ -1,0 +1,2 @@
+[% USE Monitoring.Data(config) %]
+[% INCLUDE 'flot/timeline.tt' %]
